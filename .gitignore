@@ -1,33 +1,47 @@
-# .gitignore for Grails 1.2 and 1.3
-# Although this should work for most versions of grails, it is
-# suggested that you use the "grails integrate-with --git" command
-# to generate your .gitignore file.
+*.rbc
+capybara-*.html
+.rspec
+/log
+/tmp
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/public/system
+/coverage/
+/spec/tmp
+*.orig
+rerun.txt
+pickle-email-*.html
 
-# web application files
-/web-app/WEB-INF/classes
+# TODO Comment out this rule if you are OK with secrets being uploaded to the repo
+config/initializers/secret_token.rb
 
-# default HSQL database files for production mode
-/prodDb.*
+# Only include if you have production secrets in this file, which is no longer a Rails default
+# config/secrets.yml
 
-# general HSQL database files
-*Db.properties
-*Db.script
+# dotenv
+# TODO Comment out this rule if environment variables can be committed
+.env
 
-# logs
-/stacktrace.log
-/test/reports
-/logs
+## Environment normalization:
+/.bundle
+/vendor/bundle
 
-# project release file
-/*.war
+# these should all be checked in to normalize the environment:
+# Gemfile.lock, .ruby-version, .ruby-gemset
 
-# plugin release files
-/*.zip
-/plugin.xml
+# unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
+.rvmrc
 
-# older plugin install locations
-/plugins
-/web-app/plugins
+# if using bower-rails ignore default bower_components path bower.json files
+/vendor/assets/bower_components
+*.bowerrc
+bower.json
 
-# "temporary" build files
-/target
+# Ignore pow environment settings
+.powenv
+
+# Ignore Byebug command history file.
+.byebug_history
+
+# Ignore node_modules
+node_modules/
