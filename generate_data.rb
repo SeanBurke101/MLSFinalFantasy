@@ -24,7 +24,16 @@ for i in 1..number_of_players
     worth = position_worth[-1]
     status = browser.p(:class => ["player-pos uppercase"]).html.scan(/<i class=\"(.*)\">/)[0][0]
     previous_points = browser.p(:xpath => '//*[@id="player-content"]/div/div[2]/div/div/div[1]/div[3]/p[2]').text
-    puts("#{name},#{team},#{position},#{previous_points},#{worth},#{status}")
+    # player_points_html = browser.div(:xpath => '//*[@id="player-content"]/div/div[3]/div[1]/div[2]').html.to_s.gsub(/\s+/, '')
+    player_points_html = browser.table(:xpath => '//*[@id="player-content"]/div/div[3]/div[1]/div[2]/table').text
+    rounds = player_points_html.scan(/(\d+) (\w+\s?\.?\w+\s?\.?\s?\w+\s?\w+) (\d+|-)/)
+    # player_stats_text = browser.tbody(:xpath => '//*[@id="js-scrolling-block"]/tbody').text.split(/\n/)
+
+    # p(player_stats_text)
+    puts("#{name},#{team},#{position},#{previous_points},#{worth},#{status},#{browser.url},#{rounds.flatten.join(',')}")
+    # puts rounds
+    # p(rounds.flatten.join(','))
+    # puts(player_points_html)
   rescue
     browser.close
     browser = Watir::Browser.new
